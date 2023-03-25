@@ -1,12 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { useFonts, Raleway_600SemiBold, Raleway_700Bold } from '@expo-google-fonts/raleway';
+
+import GameScreen from './app/screens/GameScreen';
+
+import colors from './app/config/colors';
 
 export default function App() {
+
+  let [fontsLoaded] = useFonts({
+    Raleway_600SemiBold, 
+		Raleway_700Bold 
+  });
+
+	if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <GameScreen />
   );
 }
 
@@ -17,4 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+	text: {
+		color: colors.primary,
+	}
 });
